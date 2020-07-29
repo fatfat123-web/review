@@ -1,12 +1,12 @@
 <template>
-    $END$
+    <el-main>这里是忘记密码</el-main>
 </template>
 
 <script>
     export default {
-        name: "cur"
+        name: "cut"
     }
-</script>
+</script>t
 
 <style scoped>
 

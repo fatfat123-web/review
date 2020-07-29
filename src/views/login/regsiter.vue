@@ -1,10 +1,10 @@
 <template>
-    <div>index</div>
+    <el-main>这个是注册</el-main>
 </template>
 
 <script>
     export default {
-        name: "index"
+        name: "regsiter"
     }
 </script>
 
