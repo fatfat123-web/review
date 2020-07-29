@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {Message} from 'element-ui';
 import {throwErr} from '@/utils/throwErr'
-import md5 from 'js-md5';
+import md5 from 'md5'
 
 // 默认请求地址   ok
 axios.defaults.baseURL = 'http://api-qa.gczlsa.com/api-gateway';

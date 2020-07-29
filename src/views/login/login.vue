@@ -21,7 +21,7 @@
 
 <script>
     import {mapState} from 'vuex'
-    import md5 from 'js-md5';
+    import md5 from 'md5'
     import UseraccountServiceApi from '@/api/UseraccountServiceApi'
     export default {
         name: "login",
