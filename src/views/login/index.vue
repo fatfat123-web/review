@@ -4,11 +4,9 @@
 
             <div style="display: flex;">
                 <div class="bg">
-
                 </div>
-                <!--content内容的意思-->
                 <div class="content">
-                    <router-view style="padding:70px 0"/>
+                    <router-view style="padding:40px 0"/>
                 </div>
             </div>
         </el-main>
@@ -18,9 +16,9 @@
             <div class="hyperlink">
                 <a style="" v-for="(aa, index) in hyperlink" :href="aa.URL" :key="index" :class="index===4?'aaa':''">
                     {{aa.title}}</a>
-
             </div>
-            <div style="height: 40px;text-align: center;display: block;font-size: 0.1rem">版权所有 © 2019 广西桂呈永军科技有限公司 All Rights Reserved 桂ICP备450103020017</div>
+            <div style="height: 40px;text-align: center;display: block;font-size: 0.1rem">
+                版权所有 © 2019 广西桂呈永军科技有限公司 All Rights Reserved 桂ICP备450103020017</div>
             </div>
         </el-footer>
     </el-container>
@@ -66,6 +64,9 @@
 </script>
 
 <style scoped lang="scss">
+    .test{
+        font-size: 90px;
+    }
     .el-container {
         font-size:20px;
         width: 100vw;
@@ -91,7 +92,6 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            padding: 70px 0;
 
             .hyperlink {
              margin-top: 20px;
@@ -121,21 +121,12 @@
                     height: 10px;
                 }
                 }
-
-
         }
-    }
-
-    .main {
-
-
     }
 
     .aaa:after {
         border-right: none !important;
-
     }
-
     .content {
         width: 519px;
         height: 560px;
@@ -143,12 +134,41 @@
         background: white;
         -webkit-box-shadow: 0 2px 59px 0 rgba(145, 145, 145, 0.24);
         box-shadow: 0 2px 59px 0 rgba(145, 145, 145, 0.24);
-
     }
 
     /deep/ .el-input {
         input {
             border: none;
+            border-bottom: 1px silver solid;
+            border-radius: 0;
+            width: 360px;
+            padding-left: 3px;
         }
+    }
+    /deep/ .but1 {
+        letter-spacing: 10px;
+        width: 360px;
+        height: 48px;
+        font-size: 18px;
+        margin-top: 15px;
+        background: #0177d2;
+    }
+    /deep/ .but1:hover{
+        background: cornflowerblue;
+    }
+    /deep/  .fon1 {
+        margin: 20px 0 0 50%;
+        font-size: 16px;
+    }
+    /deep/.el-header {
+        font-size: 34px;
+        color: cornflowerblue;
+        font-weight:600
+    }
+    /deep/ label {
+        color: rgba(118, 122, 147, 1);
+        font-size: 16px;
+        float: none;
+
     }
 </style>

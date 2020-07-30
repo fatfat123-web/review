@@ -37,6 +37,8 @@
 </script>
 
 <style scoped lang="scss">
+.main{
 
+}
 
 </style>
