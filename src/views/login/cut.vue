@@ -46,7 +46,11 @@
         },
         methods: {
            async send() {
-                const res=await UseraccountServiceApi.user_account.reset_password(this.params)
+               //接口是这个东西
+               // sendCaptcha(mobile,randstr,ticket){
+               //     return utils.http.post(`/useraccount-service/sms_captcha/public/v1/send_captcha`,{mobile,randstr,ticket});
+               // }
+                const res=await UseraccountServiceApi.user_account.send_captcha(this.params)
                 console.log(res)
                 let time = 6;
                 let timer = setInterval(() => {
