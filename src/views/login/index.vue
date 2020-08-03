@@ -14,7 +14,7 @@
             <div style="height: 60px;text-align: center;letter-spacing:20px;">桂呈科技智联食安</div>
             <div style="background: #2e3440;width: 100%">
             <div class="hyperlink">
-                <a style="" v-for="(aa, index) in hyperlink" :href="aa.URL" :key="index" :class="index===4?'aaa':''">
+                <a  v-for="(aa, index) in hyperlink" :href="aa.URL" :key="index" :class="index===4?'aaa':''">
                     {{aa.title}}</a>
             </div>
             <div style="height: 40px;text-align: center;display: block;font-size: 0.1rem">

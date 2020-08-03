@@ -14,12 +14,19 @@ export default class UseraccountServiceApi {
         reset_password(data) {
             return request('post', '/useraccount-service/user_account/common/v1/reset_password',data)
         },
-        //发送验证码
-        send_captcha(data) {
-            return request('post', '/useraccount-service/user_account/common/v1/send_captcha',data)
-        },
+
+        //      检测帐号是否存在
+        account_exists(data){
+            return request('post', `/useraccount-service/user_account/v1/account_exists?username=${data}`)
+        }
+    }
+//      发送验证码服务
+    static sms_captcha={
+        //发送短信验证码
+        send_captcha(mobile,randstr,ticket){
+            return request('post','/useraccount-service/sms_captcha/public/v1/send_captcha',{mobile,randstr,ticket})
+        }
 
     }
-
 };
 
