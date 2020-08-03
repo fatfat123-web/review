@@ -3,10 +3,10 @@
         <el-header style="height: 50px;display: flex;background: #2e3440;line-height: 50px">
 
             <div class="font1" >桂呈智联食安总后台</div>
-            <el-menu ref="menu" mode="horizontal" style="z-index: 111" router>
+            <el-menu ref="menu" mode="horizontal" style="z-index: 111" router >
 
-                <el-menu-item v-for="(name, index) in list" :class="{'nameClick':aColro===index}" :key="name.path"
-                              :index="name.path"           @click="head(index)">{{name.name}}
+                <el-menu-item v-for="(name, index) in list" :class="{'nameClick':name.path===defaultActive}" :key="index"
+                              :index="name.path"     >{{name.name}}
                 </el-menu-item>
             </el-menu>
 
@@ -30,27 +30,13 @@
         name: "index",
         data() {
             return {
-                kg:null,
                 aColro: null,
                 list: roleRouter,
-
+                defaultActive:'',
             }
         },
         created() {
             this.defaultActive = this.$route.matched[0].path;
-        },
-        mounted() {
-
-        },
-        methods: {
-
-            head(index) {
-
-                this.aColro = index;
-
-            },
-
-
         },
         components: {
             dropdown,
@@ -62,7 +48,9 @@
             $route() {
                 this.defaultActive = this.$route.matched[0].path;
             }
-        }
+        },
+
+
     }
 </script>
 
@@ -73,20 +61,18 @@
         text-align: center;
         display: inline-block;
         overflow: hidden;
+        color: white;
     }
 
     .el-container {
         .el-header {
-
             .el-menu {
                 background: #2e3440;
                 border: none;
                 flex: 4;
                 display: flex;
                 text-align: center;
-
                 .el-menu-item {
-
                     color: slategray;
                     display: inline-block;
                    padding: 0 30px;
@@ -94,11 +80,9 @@
                     line-height: 52px;
                     height: 52px;
                 }
-
                 .el-menu-item:hover {
                     color: white;
                     background: none;
-
                 }
             }
         }

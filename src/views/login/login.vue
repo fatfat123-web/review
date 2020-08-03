@@ -54,7 +54,7 @@
                 // 如果不需要处理错误的信息 可以不用try和catch
                 try {
                     const res = await UseraccountServiceApi.user_account.login(form)
-                    console.log(res);
+                    // console.log(res);
                     //从这里获得token后用commit的方法发送给vuex
                     this.$store.commit('SET_TOKEN', res.accessToken);
                     this.$router.push('/index');
