@@ -2,7 +2,6 @@ export default [
     {
         path: '/',
         redirect: '/login',
-        //index这个网站才是大的主体
         component: () => import( '@/views/login/index'),
         children: [
             {

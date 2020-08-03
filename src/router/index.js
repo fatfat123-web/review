@@ -8,6 +8,7 @@ import views from '@/views'
 export const roleRouter = [
     {
         path: '/index',
+        name: '首页',
         meta: {
             // icon: 'iconshouye'
             //    按需加载 只有用到的时候才引入
@@ -79,36 +80,36 @@ export const roleRouter = [
 
     },
     {
-        path: '/system',
+        path: '/systematic',
         name: '系统设置',
-        redirect: '/system/system/system',
+        redirect: '/systematic/systematic/api',
         component: views,
         meta: {},
         children: [
             {
-                path: '/system/setting/',
+                path: '/systematic/systematic/',
                 name: '系统设置',
                 component: {render: h => h('router-view')},
                 children: [
                     {
-                        path: '/system/setting/api',
+                        path: '/systematic/systematic/api',
                         name: '接口管理 ',
-                        component: () => import('@/views/system/setting/api'),
+                        component: () => import('@/views/systematic/setting/api'),
                     },
                     {
-                        path: '/system/setting/versionSetting',
+                        path: '/systematic/systematic/versionSetting',
                         name: '权限管理 ',
-                        component: () => import('@/views/system/setting/version-setting'),
+                        component: () => import('@/views/systematic/setting/version-setting'),
                     },
                     {
-                        path: '/system/setting/permission',
+                        path: '/systematic/systematic/permission',
                         name: '版本功能设置 ',
-                        component: () => import('@/views/system/setting/permission'),
+                        component: () => import('@/views/systematic/setting/permission'),
                     },
                     {
-                        path: '/system/setting/enterpriseRole',
+                        path: '/systematic/systematic/enterpriseRole',
                         name: '企业角色预览 ',
-                        component: () => import('@/views/system/setting/enterprise-role'),
+                        component: () => import('@/views/systematic/setting/enterprise-role'),
                     },
                 ]
             },
@@ -125,4 +126,8 @@ export default new Router({
         ...login,
     ]
 })
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err)
+}
 

@@ -35,14 +35,17 @@
             $route: {
                 immediate: true,
                 handler(val) {
-                    console.log(roleRouter)
-                    // // 路由要三层结构，所以matched能看到三层数组
-                    // const oneName = val.matched[0].name;    //取第0层的名字
-                    // this.list = roleRouter.find(n=>{       //从路由表过滤出来
-                    //     return n.name === oneName
-                    // }).children;
-                    // this.defaultActive = val.path;  //默认menu激活当前路由
-                    // this.openeds = [val.matched[1].path]
+                    console.log(val)
+                    // 路由要三层结构，所以matched能看到三层数组
+                    const oneName = val.matched[0].name;    //取第0层的名字
+                    console.log(oneName)
+                    this.list = roleRouter.find(n=>{       //从路由表过滤出第一层名字
+                        return n.name === oneName
+                    }).children;
+                    this.defaultActive = val.path;  //默认menu激活当前路由
+                    this.openeds = [val.matched[1].path]
+                    console.log(this.defaultActive)
+                    console.log(this.openeds )
 
                 }
             }

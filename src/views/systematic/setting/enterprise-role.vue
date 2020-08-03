@@ -1,5 +1,5 @@
 <template>
-    <el-main>这里是企业角色预设</el-main>
+    <el-main>这里是权限管理</el-main>
 </template>
 
 <script>

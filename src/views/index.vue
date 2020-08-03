@@ -3,23 +3,20 @@
         <el-header style="height: 50px;display: flex;background: #2e3440;line-height: 50px">
 
             <div class="font1" >桂呈智联食安总后台</div>
-            <el-menu ref="menu" mode="horizontal" style="z-index: 111">
-                <el-menu-item @click="aColro=null" :class="{'nameClick':aColro===null}">
-                    首页
-                </el-menu-item>
-                <el-menu-item v-for="(name, index) in header" :class="{'nameClick':aColro===index}" :key="index"
-                              @click="head(index)">{{name}}
+            <el-menu ref="menu" mode="horizontal" style="z-index: 111" router>
+
+                <el-menu-item v-for="(name, index) in list" :class="{'nameClick':aColro===index}" :key="name.path"
+                              :index="name.path"           @click="head(index)">{{name.name}}
                 </el-menu-item>
             </el-menu>
 
             <dropdown></dropdown>
 
         </el-header>
-
 <el-main style="padding: 0;display: flex">
-    <sidebar style="height: 100%" v-if="aColro!==null"></sidebar>
-    <home ></home>
-
+    <sidebar style="height: 100%" v-if="$route.path !== '/index'"></sidebar>
+<!--    <home ></home>-->
+<router-view></router-view>
 </el-main>
     </el-container>
 </template>
@@ -28,20 +25,27 @@
     import dropdown from '../views/components/dropdown'
     import home from './components/home'
     import sidebar from './components/sidebar'
-
+    import {roleRouter} from "@/router";
     export default {
         name: "index",
         data() {
             return {
+                kg:null,
                 aColro: null,
+                list: roleRouter,
 
-                header: ['商品管理', '企业管理', '系统设置',]
             }
+        },
+        created() {
+            this.defaultActive = this.$route.matched[0].path;
+        },
+        mounted() {
+
         },
         methods: {
 
-
             head(index) {
+
                 this.aColro = index;
 
             },
@@ -53,11 +57,11 @@
             home,
             sidebar,
         },
-        mounted() {
 
-        },
         watch: {
-
+            $route() {
+                this.defaultActive = this.$route.matched[0].path;
+            }
         }
     }
 </script>
