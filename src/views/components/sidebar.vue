@@ -7,7 +7,7 @@
                     :key="item.path"
         >
             <template slot="title">
-                <span style="color: white">{{item.name}}</span>
+                <span style="color: white">{{item.meta.title}}</span>
             </template>
             <el-menu-item :index="item2.path" v-for="item2 in item.children" v-if="!item2.meta" :key="item2.path">
                 {{item2.name}}
@@ -60,20 +60,26 @@
 </script>
 
 <style scoped lang="scss">
+
     .el-menu {
         background: rgb(67, 86, 101);
-           width: 200px;
+
         > li {
             background: #333c4c;
-             min-width: 0;
+
             /deep/ .el-submenu__title {
                 background: rgb(67, 86, 101);
                 color: white;
+                min-width: 0;
+
             }
 
             > ul {
+                min-width: 0;
+
                 > li {
                     color: silver;
+
                 }
 
                 .is-active:before {

@@ -24,7 +24,8 @@ export const roleRouter = [
         children: [
             {
                 path: '/enterprise/enterprise/',
-                name: '供应企业管理',
+                name: '',
+                meta: {title: '供应企业管理',},
                 component: {render: h => h('router-view')},
                 children: [
                     {
@@ -56,7 +57,8 @@ export const roleRouter = [
         children: [
             {
                 path: '/product/supplyProduct/',
-                name: '采供商品体系',
+                name: '',
+                meta: {title: '采供商品体系',},
                 component: {render: h => h('router-view')},
                 children: [
                     {
@@ -88,7 +90,8 @@ export const roleRouter = [
         children: [
             {
                 path: '/systematic/systematic/',
-                name: '系统设置',
+                name: '',
+                meta: {title: '系统设置',},
                 component: {render: h => h('router-view')},
                 children: [
                     {
@@ -110,6 +113,42 @@ export const roleRouter = [
                         path: '/systematic/systematic/enterpriseRole',
                         name: '企业角色预览 ',
                         component: () => import('@/views/systematic/setting/enterprise-role'),
+                    },
+                ]
+            },
+            {
+                path: '/systematic/management/',
+                name: '',
+                meta: { title: '员工管理',},
+                component: {render: h => h('router-view')},
+                children: [
+                    {
+                        path: '/systematic/management/staff',
+                        name: '员工管理 ',
+                        component: () => import('@/views/systematic/management/staff'),
+                    },
+                    {
+                        path: '/systematic/management/department',
+                        name: '部门管理 ',
+                        component: () => import('@/views/systematic/management/department'),
+                    },
+                    {
+                        path: '/systematic/management/systemRole',
+                        name: '系统角色管理 ',
+                        component: () => import('@/views/systematic/management/system-role'),
+                    },
+                ]
+            },
+            {
+                path: '/systematic/image/',
+                name: '',
+                meta: { title: '图片管理',},
+                component: {render: h => h('router-view')},
+                children: [
+                    {
+                        path: '/systematic/image',
+                        name: '图片管理 ',
+                        component: () => import('@/views/systematic/image/index'),
                     },
                 ]
             },

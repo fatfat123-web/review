@@ -54,6 +54,7 @@
 </script>
 
 <style scoped lang="scss">
+
     .font1 {
         margin: 0 20px;
         width: 150px;
