@@ -30,7 +30,6 @@
         name: "index",
         data() {
             return {
-                aColro: null,
                 list: roleRouter,
                 defaultActive:'',
             }
@@ -75,7 +74,7 @@
                 .el-menu-item {
                     color: slategray;
                     display: inline-block;
-                   padding: 0 30px;
+                    padding: 0 30px;
                     margin-right: 20px;
                     line-height: 52px;
                     height: 52px;
