@@ -8,15 +8,16 @@
                     v-if="item.meta.title!=='图片管理'"
         >
 
-            <template slot="title">
+            <template slot="title" >
                 <i class="el-icon-setting"></i>
                 <span>{{item.meta.title}}</span>
             </template>
-            <el-menu-item :index="item2.path" v-for="item2 in item.children"  :key="item2.path" style=" padding-left: 60px;">
+            <el-menu-item :index="item2.path" v-for="item2 in item.children"  :key="item2.path" style=" padding-left: 60px;" >
                 {{item2.name}}
             </el-menu-item>
 
         </el-submenu>
+
                 <!--路由为systematic才会一直出现-->
         <el-menu-item class="picture" :index="picture.path" v-if="this.$route.matched[0].path==='/systematic'">
             <i class="el-icon-setting"></i>

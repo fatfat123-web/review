@@ -20,7 +20,7 @@
 
                 <home v-if="$route.path === '/index'"></home>
             <shortcut v-if="$route.path !== '/index'"></shortcut>
-            <router-view>  </router-view>
+            <router-view style="padding: 0">  </router-view>
         </el-main>
     </el-container>
 </template>
