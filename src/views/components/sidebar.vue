@@ -94,8 +94,7 @@
             margin-left: 12px;
             font-size: 16px;
         }
-
-        .is-active:before {
+        /deep/.is-active:before {
             display: block;
             position: absolute;
             content: " ";
@@ -103,14 +102,25 @@
             height: 49px;
             float: left;
             background: #0177d2;
-            margin-left: -60px;
+            margin-left: -20px;
             z-index: 99;
         }
 
 
+
         > li {
             background: #333c4c;
-
+            /deep/.is-active:before {
+                display: block;
+                position: absolute;
+                content: " ";
+                width: 6px;
+                height: 49px;
+                float: left;
+                background: #0177d2;
+                margin-left: -60px;
+                z-index: 99;
+            }
 
             /deep/ .el-submenu__title {
                 background: rgb(67, 86, 101);
