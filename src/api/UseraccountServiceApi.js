@@ -18,7 +18,12 @@ export default class UseraccountServiceApi {
         //      检测帐号是否存在
         account_exists(data){
             return request('post', `/useraccount-service/user_account/v1/account_exists?username=${data}`)
+        },
+    //    重置密码
+        resetPassword(data){
+            return request('post',`/useraccount-service/user_account/common/v1/reset_password`,data);
         }
+
     }
 //      发送验证码服务
     static sms_captcha={

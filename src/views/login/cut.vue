@@ -7,16 +7,16 @@
 
             <el-input v-model="param.username" placeholder="帐号"></el-input>
             <div style="display: flex">
-                <el-input v-model="params.randstr" stype="password" placeholder="验证码"></el-input>
+                <el-input v-model="param.randstr" stype="password" placeholder="验证码"></el-input>
                 <el-button @click="send" type="primary" :disabled="code === '发送验证码' ? false : true" class="btn2"  id="TencentCaptcha">
                     {{code}}
                 </el-button>
             </div>
-            <el-input v-model="param.smsCaptcha" type="password" placeholder="请输入8位数新密码"></el-input>
-            <el-input v-model="param.smsCaptcha" type="password" placeholder="确认密码"></el-input>
+            <el-input v-model="param.newPassworda" type="password" placeholder="请输入8位数新密码"></el-input>
+            <el-input v-model="param.newPasswordb" type="password" placeholder="确认密码"></el-input>
 
         </el-form>
-        <el-button type="primary" class="but1" @click="">确定</el-button>
+        <el-button type="primary" class="but1" @click="confirm">确定</el-button>
         <span class="fon1" @click="$router.push('/login')">去登录</span>
     </el-main>
 </template>
@@ -28,14 +28,10 @@
         data() {
             return {
                 param: {
-                    mobile: '',
-                    username: "",
-                    smsCaptcha: '',
-                },
-                params: {
-
+                    username: '',
+                    newPassworda:'',
+                    newPasswordb:'',
                     randstr: '',
-
                 },
                 code: '发送验证码'
             }
@@ -81,7 +77,7 @@
                 if (existsStatus) {
                     let id = process.env.VUE_APP_ENV === "development" ? "2014661572" : "2068807196";
 
-                    var captcha1 = new TencentCaptcha(id, async res => {
+                    let captcha1 = new TencentCaptcha(id, async res => {
                         console.log(res)
                         if (res.ret === 0) {
                             const send=await UseraccountServiceApi.sms_captcha.send_captcha(this.param.username,res.randstr, res.ticket)
@@ -106,7 +102,29 @@
                 }
 
 
-            }
+            },
+            async confirm(){
+                if (this.param.username === "") {
+                    this.$message.error("账户不能为空哦");
+                    return;
+                }
+                if (this.param.randstr === "") {
+                    this.$message.error("验证码不能为空哦");
+                    return;
+                }
+                if (this.param.newPassworda === "" || this.param.newPasswordb === "") {
+                    this.$message.error("密码不能为空哦");
+                    return;
+                }
+
+                if (this.param.newPassworda === this.param.newPasswordb) {
+                    const res = await useraccountServiceApi.user_account.reset_password(this.param);
+                    console.log(res)
+
+                } else {
+                    this.$message.error("确认密码和新密码不相等");
+                }
+              },
         }
     }
 </script>

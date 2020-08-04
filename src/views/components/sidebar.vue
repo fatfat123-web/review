@@ -63,7 +63,7 @@
 
     .el-menu {
         background: rgb(67, 86, 101);
-
+          width: 200px;
         > li {
             background: #333c4c;
 
