@@ -143,14 +143,7 @@ export const roleRouter = [
                 path: '/systematic/image/',
                 name: '',
                 meta: { title: '图片管理',},
-                component: {render: h => h('router-view')},
-                children: [
-                    {
-                        path: '/systematic/image',
-                        name: '图片管理 ',
-                        component: () => import('@/views/systematic/image/index'),
-                    },
-                ]
+                component: () => import('@/views/systematic/image/index'),
             },
         ]
 
