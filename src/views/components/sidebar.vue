@@ -1,7 +1,7 @@
 <template>
     <!--这里是侧边栏-->
 
-    <el-menu :default-active="defaultActive" router style="height: 100%;background:#435665;">
+    <el-menu :default-active="defaultActive" router :collapse-transition="false" style="height: 100%;background:#435665;">
         <el-submenu :index="item.path"
                     v-for="item in list"
                     :key="item.path"
