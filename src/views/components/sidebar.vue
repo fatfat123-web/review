@@ -94,10 +94,10 @@
             margin-left: 12px;
             font-size: 16px;
         }
-        /deep/.is-active:before {
+        .is-active:before {
             display: block;
             position: absolute;
-            content: " ";
+            content: "";
             width: 6px;
             height: 49px;
             float: left;
