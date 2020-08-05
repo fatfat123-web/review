@@ -1,16 +1,16 @@
 <template>
   <!--这里是侧边栏-->
-  <el-menu :default-active="defaultActive" router :collapse-transition="false">
-    <template v-for="listItem in list">
-      <template v-if="listItem.children">
-        <el-submenu :index="listItem.path">
+  <el-menu :default-active="$route.path" router :collapse-transition="false">
+    <template v-for="(listItem, index) in list">
+      <template v-if="listItem.children" >
+        <el-submenu :index="listItem.path" :key="$route.path + index">
           <template slot="title">
             <span>{{ listItem.meta.title }}</span>
           </template>
+          <el-menu-item :index="item.path" v-for="item in listItem.children" :key="item.path">
+            <span slot="title">{{ item.name }}</span>
+          </el-menu-item>
         </el-submenu>
-        <el-menu-item :index="item.path" v-for="item in listItem.children" :key="item.path">
-          <span slot="title">{{ item.name }}</span>
-        </el-menu-item>
       </template>
       <el-menu-item :index="listItem.path" v-if="!listItem.children">
         <span slot="title">{{ listItem.meta.title }}</span>
@@ -61,8 +61,6 @@
             }
           });
           this.list = list;
-          console.log(this.$route);
-          this.defaultActive = this.$route.path
           // console.log(this.$route.matched[0].path)
           // const routeName = val.name;
           // roleRouter.forEach(item => {

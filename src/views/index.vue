@@ -15,14 +15,19 @@
 
         </el-header>
         <el-main style="padding: 0;display: flex">
+
             <sidebar style="height: 100%" v-if="$route.path !== '/index'"></sidebar>
+
                 <home v-if="$route.path === '/index'"></home>
-            <router-view></router-view>
+            <shortcut v-if="$route.path !== '/index'"></shortcut>
+            <router-view style="padding: 0">  </router-view>
         </el-main>
     </el-container>
 </template>
 
 <script>
+
+    import shortcut from '../views/components/shortcut';
     import dropdown from '../views/components/dropdown';
     import home from './components/home';
     import sidebar from './components/sidebar';
@@ -43,6 +48,7 @@
             dropdown,
             home,
             sidebar,
+            shortcut,
         },
 
         watch: {
@@ -56,7 +62,6 @@
 </script>
 
 <style scoped lang="scss">
-
     .font1 {
         margin: 0 20px;
         width: 150px;

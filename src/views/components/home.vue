@@ -1,5 +1,6 @@
 <template>
     <div>
+
         {{aa}}
         <input type="button" style="width:20px;height: 10px;background: aquamarine" @click="d">
     </div>
