@@ -5,32 +5,19 @@
       <template v-if="listItem.children" >
         <el-submenu :index="listItem.path" :key="$route.path + index">
           <template slot="title">
+            <i class="el-icon-setting"></i>
             <span>{{ listItem.meta.title }}</span>
           </template>
-          <el-menu-item :index="item.path" v-for="item in listItem.children" :key="item.path">
+          <el-menu-item :index="item.path" v-for="item in listItem.children" :key="item.path"  >
             <span slot="title">{{ item.name }}</span>
           </el-menu-item>
         </el-submenu>
       </template>
-      <el-menu-item :index="listItem.path" v-if="!listItem.children">
+      <el-menu-item :index="listItem.path" v-if="!listItem.children" >
+        <i class="el-icon-setting"></i>
         <span slot="title">{{ listItem.meta.title }}</span>
       </el-menu-item>
     </template>
-
-    <!--<template slot="title">-->
-    <!--  <i class="el-icon-setting"></i>-->
-    <!--<span>{{item.meta.title}}</span>-->
-    <!--</template>-->
-    <!--<el-menu-item :index="item2.path" v-for="item2 in item.children" :key="item2.path" style=" padding-left: 60px;">-->
-    <!--  {{item2.name}}-->
-    <!--</el-menu-item>-->
-
-    <!--</el-submenu>-->
-    <!--&lt;!&ndash;路由为systematic才会一直出现&ndash;&gt;-->
-    <!--<el-menu-item class="picture" :index="picture.path" v-if="this.$route.matched[0].path==='/systematic'">-->
-    <!--  <i class="el-icon-setting"></i>-->
-    <!--  <span slot="title">{{picture.meta.title}}</span>-->
-    <!--</el-menu-item>-->
 
   </el-menu>
 
@@ -56,29 +43,13 @@
         handler() {
           let list = [];
           roleRouter.forEach(item => {
+            //匹配路由：如果循环出来的第一层路由item===当前选定的路由
             if (item.path === this.$route.matched[0].path) {
+              //list的数组就等于 第一层路由里的children
               list = item.children;
             }
           });
           this.list = list;
-          // console.log(this.$route.matched[0].path)
-          // const routeName = val.name;
-          // roleRouter.forEach(item => {
-          //     item.children && item.children.forEach(item2 => {
-          //         if (!item2.children) {
-          //             this.picture = item2
-          //             // console.log(this.picture)
-          //         }
-          //         // console.log(item2)
-          //         item2.children && item2.children.forEach(item3 => {
-          //             if (item3.name === routeName) {
-          //                 this.list = item.children;
-          //                 this.defaultActive = item3.path
-          //             }
-          //         })
-          //     })
-          // })
-
         }
       },
 
@@ -95,67 +66,42 @@
     background: none;
   }
 
+  /deep/ .el-menu{
+
+    background: #333c4c;
+  }
+  /*背景色*/
   .el-menu {
     height: 100%;
-    background: rgb(67, 86, 101);
+    background: #435665;
     width: 200px;
-
-    .picture {
-      background: rgb(67, 86, 101);
-      /*background: #2e3440;*/
-    }
+    border:none;
 
     span {
       color: white;
       margin-left: 12px;
       font-size: 16px;
     }
-
-    .is-active:before {
-      display: block;
-      position: absolute;
-      content: " ";
-      width: 6px;
-      height: 49px;
-      float: left;
-      background: #0177d2;
-      margin-left: -60px;
-      z-index: 99;
-    }
-
-
-    > li {
-      background: #333c4c;
-
-
+      /*标题的颜色*/
       /deep/ .el-submenu__title {
-        background: rgb(67, 86, 101);
+        background: #435665;
         color: white;
         min-width: 0;
 
-      }
-
-      > ul {
-        min-width: 0;
-
-        > li {
-          color: silver;
-
-        }
-
-
-        > li:hover {
-          background: #272e3b;
-        }
-      }
     }
   }
 
   /deep/ .el-menu-item.is-active {
     border-left: 5px solid #0177d2;
+     background: #2e3440;
     span {
       color: #0177d2;
+      display: inline-block;
+      line-height: 50px;
     }
+  }
+  /deep/  .el-menu-item:focus, .el-menu-item:hover{
+    background: #2e3440;
   }
 
 </style>

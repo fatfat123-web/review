@@ -1,6 +1,6 @@
 <template>
-    <el-container style="height: 100%;overflow-y: auto;">
-        <el-header style="height: 50px;display: flex;background: #2e3440;line-height: 50px">
+    <el-container style="height: 100%;overflow: auto;">
+        <el-header style="height: 50px;display: flex;background: #2e3440;line-height: 50px;">
 
             <div class="font1">桂呈智联食安总后台</div>
             <el-menu ref="menu" mode="horizontal" style="z-index: 111" router>
@@ -11,17 +11,20 @@
                 </el-menu-item>
             </el-menu>
 
-            <dropdown></dropdown>
+<!--            <dropdown></dropdown>-->
 
         </el-header>
-        <el-main style="padding: 0;display: flex">
+<!--        增加了 magin:0 auto-->
+        <el-container style="overflow: auto;margin: 0 auto;width: 100%">
 
-            <sidebar style="height: 100%" v-if="$route.path !== '/index'"></sidebar>
-
-                <home v-if="$route.path === '/index'"></home>
+            <sidebar v-if="$route.path !== '/index'" ></sidebar>
+            <el-main style="height: 100%;padding: 0;">
             <shortcut v-if="$route.path !== '/index'"></shortcut>
+                <home v-if="$route.path === '/index'"></home>
+
             <router-view style="padding: 0">  </router-view>
-        </el-main>
+            </el-main>
+            </el-container>
     </el-container>
 </template>
 
@@ -62,6 +65,7 @@
 </script>
 
 <style scoped lang="scss">
+
     .font1 {
         margin: 0 20px;
         width: 150px;

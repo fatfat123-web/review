@@ -1,6 +1,6 @@
 <template>
    <el-header>
-       <div></div>
+    123422222222222222222222222222222222222222222222222222222222222
    </el-header>
 </template>
 
@@ -12,12 +12,10 @@
 
 <style scoped lang="scss">
 .el-header{
+    background: #435665;
     padding: 0;
     height: 48px;
     display: flex;
-    div{
-    background: #2e3440;
-        padding: 0 20px;
-}
+    overflow: hidden;
 }
 </style>
