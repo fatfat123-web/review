@@ -140,7 +140,7 @@ export const roleRouter = [
                 ]
             },
             {
-                path: '/systematic/image/',
+                path: '/systematic/image',
                 name: '',
                 meta: { title: '图片管理',},
                 component: () => import('@/views/systematic/image/index'),
