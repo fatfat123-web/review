@@ -15,14 +15,14 @@
 
         </el-header>
 <!--        增加了 magin:0 auto-->
-        <el-container style="overflow: auto;margin: 0 auto;width: 100%">
+        <el-container style="overflow: auto;">
 
             <sidebar v-if="$route.path !== '/index'" ></sidebar>
-            <el-main style="height: 100%;padding: 0;">
+            <el-main style="height: 100%;">
             <shortcut v-if="$route.path !== '/index'"></shortcut>
                 <home v-if="$route.path === '/index'"></home>
 
-            <router-view style="padding: 0">  </router-view>
+            <router-view style="padding: 10px 0 0 0;margin:0 0 0 15px">  </router-view>
             </el-main>
             </el-container>
     </el-container>

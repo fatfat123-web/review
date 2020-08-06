@@ -1,5 +1,5 @@
 <template>
-    <el-main>这里是餐饮企业管理</el-main>
+    <div>这里是餐饮企业管理</div>
 </template>
 
 <script>

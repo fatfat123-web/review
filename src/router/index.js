@@ -20,7 +20,7 @@ export const roleRouter = [
         name: '企业管理',
         redirect: '/enterprise/enterprise/enterprise',
         component: views,
-        meta: {},
+        meta: {title: '企业管理',},
         children: [
             {
                 path: '/enterprise/enterprise/',
@@ -31,16 +31,19 @@ export const roleRouter = [
                     {
                         path: '/enterprise/enterprise/enterprise',
                         name: '餐饮企业管理 ',
+                        meta: { title: '餐饮企业管理',},
                         component: () => import('@/views/enterprise/catering'),
                     },
                     {
                         path: '/enterprise/enterprise/supply',
                         name: '供应企业管理 ',
+                        meta: { title: '供应企业管理',},
                         component: () => import('@/views/enterprise/supply')
                     },
                     {
                         path: '/enterprise/enterprise/business',
                         name: '工商数据库 ',
+                        meta: { title: '工商数据库',},
                         component: () => import('@/views/enterprise/business')
                     },
                          ]
@@ -53,7 +56,7 @@ export const roleRouter = [
         name: '商品管理',
         redirect: '/product/supplyProduct/product',
         component: views,
-        meta: {},
+        meta: {title: '商品管理',},
         children: [
             {
                 path: '/product/supplyProduct/',
@@ -64,16 +67,19 @@ export const roleRouter = [
                     {
                         path: '/product/supplyProduct/product',
                         name: '平台标准商品 ',
+                        meta: { title: '平台标准商品',},
                         component: () => import('@/views/product/product'),
                     },
                     {
                         path: '/product/supplyProduct/category',
                         name: '平台商品分类 ',
+                        meta: { title: '平台商品分类',},
                         component: () => import('@/views/product/category')
                     },
                     {
                         path: '/product/supplyProduct/manage',
                         name: '供企商品管理 ',
+                        meta: { title: '供企商品管理',},
                         component: () => import('@/views/product/manage')
                     },
                 ]
@@ -86,7 +92,7 @@ export const roleRouter = [
         name: '系统设置',
         redirect: '/systematic/systematic/api',
         component: views,
-        meta: {},
+        meta: {title: '系统设置',},
         children: [
             {
                 path: '/systematic/systematic/',
@@ -97,21 +103,25 @@ export const roleRouter = [
                     {
                         path: '/systematic/systematic/api',
                         name: '接口管理 ',
+                        meta: { title: '接口管理',},
                         component: () => import('@/views/systematic/setting/api'),
                     },
                     {
                         path: '/systematic/systematic/versionSetting',
                         name: '权限管理 ',
+                        meta: { title: '权限管理',},
                         component: () => import('@/views/systematic/setting/version-setting'),
                     },
                     {
                         path: '/systematic/systematic/permission',
                         name: '版本功能设置 ',
+                        meta: { title: '版本功能设置',},
                         component: () => import('@/views/systematic/setting/permission'),
                     },
                     {
                         path: '/systematic/systematic/enterpriseRole',
                         name: '企业角色预览 ',
+                        meta: { title: '企业角色预览',},
                         component: () => import('@/views/systematic/setting/enterprise-role'),
                     },
                 ]
@@ -125,23 +135,26 @@ export const roleRouter = [
                     {
                         path: '/systematic/management/staff',
                         name: '员工管理 ',
+                        meta: { title: '员工管理',},
                         component: () => import('@/views/systematic/management/staff'),
                     },
                     {
                         path: '/systematic/management/department',
                         name: '部门管理 ',
+                        meta: { title: '部门管理',},
                         component: () => import('@/views/systematic/management/department'),
                     },
                     {
                         path: '/systematic/management/systemRole',
                         name: '系统角色管理 ',
+                        meta: { title: '系统角色管理',},
                         component: () => import('@/views/systematic/management/system-role'),
                     },
                 ]
             },
             {
                 path: '/systematic/image',
-                name: '',
+                name: '图片管理',
                 meta: { title: '图片管理',},
                 component: () => import('@/views/systematic/image/index'),
             },

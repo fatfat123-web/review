@@ -1,5 +1,5 @@
 <template>
-    <el-main>这里是工商数据库</el-main>
+    <div>这里是工商数据库</div>
 </template>
 
 <script>
