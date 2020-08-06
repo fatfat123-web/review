@@ -98,6 +98,7 @@
     }
 
     .hide {
+        height: 60px;
         position: relative;
         overflow: hidden;
 
@@ -112,7 +113,7 @@
         }
 
         .btn {
-
+            position: absolute;
             display: flex;
             margin: 10px 10px;
             overflow: auto;
@@ -174,6 +175,6 @@
     .breadcrumb {
         height: 20px;
         width: 500%;
-        margin: 15px 15px;
+
     }
 </style>
