@@ -1,22 +1,25 @@
 <template>
-    <el-header style="height: 80px;">
-        <div class="hide"  >
-            <button class="advance" @click="advance"></button>
-            <div class="btn">
-                <div
-                        v-for="(sj,index) in defaultActive "
-                        class="label"
-                        :key="index"
-                        :class="sj.path===color &&'active'">
-                    <p @click="labeljump(sj)">{{sj.name}}</p>
-                    <i style="margin: 5px 4px" class="el-icon-close" @click="omit(sj,index)"></i>
+    <el-header style="height: 80px">
+        <div class="hide">
+            <div class="advance" @click="advance(1)"></div>
+            <div class="shell">
+                <div class="btn">
+                    <div
+                            v-for="(sj,index) in defaultActive "
+                            class="label"
+                            :key="index"
+                            :class="sj.path===color &&'active'">
+                        <p @click="labeljump(sj)">{{sj.name}}</p>
+                        <i style="margin: 5px 4px" class="el-icon-close" @click="omit(sj,index)"></i>
+                    </div>
                 </div>
             </div>
+            <div class="advance" @click="advance(2)"></div>
         </div>
         <el-breadcrumb separator-class="el-icon-arrow-right" class="breadcrumb" router>
             <!--用for循环 循环出路由matched里面的name-->
             <!--           这个是面包屑-->
-            <el-breadcrumb-item v-for="item in $route.matched" :key="item.name">{{item.meta.title}}</el-breadcrumb-item>
+                        <el-breadcrumb-item v-for="item in $route.matched" :key="item.name">{{item.meta.title}}</el-breadcrumb-item>
 
         </el-breadcrumb>
     </el-header>
@@ -24,6 +27,7 @@
 
 <script>
     import {roleRouter} from "@/router";
+
     export default {
         name: "shortcut",
         data() {
@@ -52,8 +56,8 @@
 
 
             },
-            advance(){
-
+            advance(val) {
+                console.log(val)
 
             }
 
@@ -88,6 +92,7 @@
         width: 100%;
 
     }
+
     /*这个是面包屑第三层要变的颜色*/
     /deep/ .el-breadcrumb__item:last-child .el-breadcrumb__inner {
         color: #0177D2;
@@ -98,28 +103,36 @@
     }
 
     .hide {
-        height: 60px;
+        display: flex;
+        display: -webkit-box;
         position: relative;
         overflow: hidden;
 
         .advance {
-            width: 30px;
-            position: absolute;
             background: #0177D2;
             display: inline-block;
             height: 30px;
-           margin:7px 0 0 0;
+           padding: 5px 15px;
 
         }
 
-        .btn {
-            position: absolute;
-            display: flex;
-            margin: 10px 10px;
-            overflow: auto;
-            width: 999%;
-            height: 26px;
-            padding-left:25px;
+
+        .shell {
+            position: relative;
+            -webkit-box-flex: 1;
+            overflow: hidden;
+            flex: 1;
+            height: 45px;
+
+            .btn {
+                /*position: absolute;*/
+                display: flex;
+                margin: 10px 10px;
+                overflow: auto;
+                width: 999%;
+                height: 26px;
+                padding-left: 25px;
+            }
         }
     }
 
@@ -173,8 +186,9 @@
     }
 
     .breadcrumb {
-        height: 20px;
-        width: 500%;
+        position: relative;
+        line-height: 30px;
+        margin: 0 0 0 15px;
 
     }
 </style>

@@ -18,11 +18,11 @@
         <el-container style="overflow: auto;">
 
             <sidebar v-if="$route.path !== '/index'" ></sidebar>
-            <el-main style="height: 100%;">
+            <el-main style="height: 100%;padding: 0">
             <shortcut v-if="$route.path !== '/index'"></shortcut>
                 <home v-if="$route.path === '/index'"></home>
 
-            <router-view style="padding: 10px 0 0 0;margin:0 0 0 15px">  </router-view>
+            <router-view style="padding: 10px 0 0 0;margin:0 0 0 15px"> </router-view>
             </el-main>
             </el-container>
     </el-container>
