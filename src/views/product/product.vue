@@ -3,6 +3,7 @@
 </template>
 
 <script>
+    import ProductServiceApi from '@/api/ProductServiceApi'
     export default {
         name: "product",
         data(){
