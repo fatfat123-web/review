@@ -3,7 +3,7 @@
         <div class="hide">
             <div class="advance" @click="advance(1)"></div>
             <div class="shell">
-                <div class="btn">
+                <div class="btn" :style="bt">
                     <div
                             v-for="(sj,index) in defaultActive "
                             class="label"
@@ -35,6 +35,7 @@
 
                 defaultActive: [],
                 color: '',
+                bt:{left:'5px',},
 
             }
 
@@ -47,17 +48,40 @@
 
             },
             omit(sj, index) {
-                console.log(index);
-                console.log(sj);
-                this.defaultActive.splice(index, 1);
 
-            },
-            scroll(e) {
+                //判断数组里的长度，如果等于1 则跳转到首页
+                if (this.defaultActive.length===1){
+                    this.$router.push('/index')
+                    //判断数组里的长度，如果等于1 则做以下操作
+                }else if(this.defaultActive.length>1){
+
+                    //如果不在当前路由下 只做删除
+                    if(sj.path!==this.$route.path){
+                            this.defaultActive.splice(index, 1);
+                        console.log('只删除')
+                    }
+                  //  如果在当前路由下 跳转到数组第一个路由
+                  else if(sj.path===this.$route.path){
+                        //先删除数组第一个路由
+                        this.defaultActive.splice(index, 1);
+                        //在做跳转
+                        this.$router.push(this.defaultActive[0].path);
+                        console.log(111)
+                    }
+                }
+
+
 
 
             },
             advance(val) {
-                console.log(val)
+                let data = this.$options.data().bt
+                switch (val) {
+                    case 1: this.bt.left = parseFloat(data.left) - 50+'px';
+                    break;
+                    default:this.bt.left = parseFloat(data.left) + 50+'px';
+                }
+
 
             }
 
@@ -67,6 +91,7 @@
             $route: {
                 immediate: true,
                 handler() {
+
                     //先做外层判断
                     if (!this.$route.meta.hidden) {
                         //判断相同的名字 ，先要用find在路由中查到出来
@@ -125,11 +150,11 @@
             height: 45px;
 
             .btn {
-                /*position: absolute;*/
+                position: absolute;
                 display: flex;
                 margin: 10px 10px;
                 overflow: auto;
-                width: 999%;
+                width:2000px;
                 height: 26px;
                 padding-left: 25px;
             }
