@@ -16,6 +16,19 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
+//在第一次登陆的时候做判断 有没有token
+router.beforeEach((to, from, next) => {
+  const token = store.getters.token;
+  if (token !== null) {
+    next();
+    //    要加条件不然就会无限循环跳转路由，如果访问的路由不等于login则跳转到login页面
+  } else if (to.path !== '/login') {
+    next('/login');
+  } else {
+    next()
+  }
+});
+
 const setHtmlFontSize = () => {
   const htmlDom = document.getElementsByTagName('html')[0];
   let htmlWidth = document.documentElement.clientWidth || document.body.clientWidth;

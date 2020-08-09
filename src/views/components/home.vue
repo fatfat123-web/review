@@ -1,6 +1,6 @@
+<!--首页-->
 <template>
     <div>
-
         {{aa}}
         <input type="button" style="width:20px;height: 10px;background: aquamarine" @click="d">
     </div>
@@ -12,6 +12,7 @@
         data(){
             return{
                 aa: 100,
+
             }
 
         },
@@ -25,9 +26,12 @@
             aa(value) {
                 console.log(value)
                 if (value > 200) {
-                    alert('属猪吗')
+                    console.log(this.$store.state.token)
                 }
             }
+        },
+        mounted() {
+
         }
     }
 </script>

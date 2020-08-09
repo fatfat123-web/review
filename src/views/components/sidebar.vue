@@ -41,15 +41,15 @@
       $route: {
         immediate: true,
         handler() {
-          let list = [];
+
           roleRouter.forEach(item => {
             //匹配路由：如果循环出来的第一层路由item===当前选定的路由
             if (item.path === this.$route.matched[0].path) {
               //list的数组就等于 第一层路由里的children
-              list = item.children;
+              this.list = item.children;
             }
           });
-          this.list = list;
+      
         }
       },
 

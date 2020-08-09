@@ -16,42 +16,6 @@ export const roleRouter = [
         component: () => import('@/views/index')
     },
     {
-        path: '/enterprise',
-        name: '企业管理',
-        redirect: '/enterprise/enterprise/enterprise',
-        component: views,
-        meta: {title: '企业管理',},
-        children: [
-            {
-                path: '/enterprise/enterprise/',
-                name: '',
-                meta: {title: '供应企业管理',},
-                component: {render: h => h('router-view')},
-                children: [
-                    {
-                        path: '/enterprise/enterprise/enterprise',
-                        name: '餐饮企业管理 ',
-                        meta: { title: '餐饮企业管理',},
-                        component: () => import('@/views/enterprise/catering'),
-                    },
-                    {
-                        path: '/enterprise/enterprise/supply',
-                        name: '供应企业管理 ',
-                        meta: { title: '供应企业管理',},
-                        component: () => import('@/views/enterprise/supply')
-                    },
-                    {
-                        path: '/enterprise/enterprise/business',
-                        name: '工商数据库 ',
-                        meta: { title: '工商数据库',},
-                        component: () => import('@/views/enterprise/business')
-                    },
-                         ]
-            },
-        ]
-
-    },
-    {
         path: '/product',
         name: '商品管理',
         redirect: '/product/supplyProduct/product',
@@ -87,6 +51,43 @@ export const roleRouter = [
         ]
 
     },
+    {
+        path: '/enterprise',
+        name: '企业管理',
+        redirect: '/enterprise/enterprise/enterprise',
+        component: views,
+        meta: {title: '企业管理',},
+        children: [
+            {
+                path: '/enterprise/enterprise/',
+                name: '',
+                meta: {title: '供应企业管理',},
+                component: {render: h => h('router-view')},
+                children: [
+                    {
+                        path: '/enterprise/enterprise/enterprise',
+                        name: '餐饮企业管理 ',
+                        meta: { title: '餐饮企业管理',},
+                        component: () => import('@/views/enterprise/catering'),
+                    },
+                    {
+                        path: '/enterprise/enterprise/supply',
+                        name: '供应企业管理 ',
+                        meta: { title: '供应企业管理',},
+                        component: () => import('@/views/enterprise/supply')
+                    },
+                    {
+                        path: '/enterprise/enterprise/business',
+                        name: '工商数据库 ',
+                        meta: { title: '工商数据库',},
+                        component: () => import('@/views/enterprise/business')
+                    },
+                         ]
+            },
+        ]
+
+    },
+
     {
         path: '/systematic',
         name: '系统设置',

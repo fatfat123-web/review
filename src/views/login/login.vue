@@ -32,7 +32,6 @@
                 form: {
                     username: 'admin',
                     loginPassword: 123456,
-                    // captchaCode: ''
                 },
             }
         },
