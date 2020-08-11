@@ -1,8 +1,9 @@
 <!--这里是平台商品标准-->
 <template>
-    <el-main style="height: 900px;">
+<!--    -->
+    <el-main style="height: 900px;" v-loading="loading" >
         <el-tree
-                style="overflow-y: auto"
+                style="overflow-y: auto;background: gainsboro"
                 :data="treeList"
                 :props="defaultProps"
                 @node-click="handleNodeClick"
@@ -17,9 +18,18 @@
                         导入\导出
                     </el-button>
                     <el-dropdown-menu slot="dropdown" style="width: 90px;left: 422px;text-align: center">
-                        <el-dropdown-item @click.native="introduce()">导入</el-dropdown-item>
+                        <el-upload
+                                action="#"
+                                ref="upload"
+                                class="upload-demo"
+                                :limit=limit
+                                :auto-upload="true"
+                                :before-upload="beforeUpload"
+                                :file-list="fileList"
+                        >
+                            <el-button    type="text">导入</el-button>
+                        </el-upload>
                         <el-dropdown-item @click.native="derive()">导出</el-dropdown-item>
-
                     </el-dropdown-menu>
                 </el-dropdown>
                 <el-button size="small" type="primary">下载导入模版</el-button>
@@ -98,7 +108,7 @@
                 >
                     <template slot-scope="scope">
                         <el-button size="small" type="primary">复制</el-button>
-                        <el-button size="small" type="primary">编辑</el-button>
+                        <el-button size="small" type="primary" @click="compile(scope)">编辑</el-button>
                         <el-button size="small">删除</el-button>
                     </template>
                 </el-table-column>
@@ -132,7 +142,7 @@
                     total: 0,
                     packagingAttribute: '',
                 },
-
+                loading:true,
                 treeList: [],
                 tableList: [],
 
@@ -145,11 +155,20 @@
                     parameter: '',
 
                 },
+                limit: 1,  // 上传excell时，同时允许上传的最大数
+                fileList: [],   // excel文件列表
             }
         },
         created() {
-            this.tree()
-            this.getTable();
+            Promise.all([ this.tree(), this.getTable()])
+                .then(res => {
+                    if (res){
+                        console.log(res)
+                        this.loading=false;
+                        console.log(this.loading)
+                    }
+                })
+                .catch(console.error)
         },
         mounted() {
 
@@ -157,42 +176,78 @@
         watch: {},
         methods: {
             //点击节点展开
-            handleNodeClick(data) {
-                // 树的形式是传id 后端不一定写在接口  在这里调用this.list方法
-                this.getTable({productCategoryId: data.id})
-
+            async handleNodeClick(data) {
+                // 点击树里面节点，单独请求树里面id的内容
+                console.log(data)
+                await this.getTable({productCategoryId: data.id})
             },
+            //页码
             page(page) {
                 this.pageParam.pageNum = page;
                 this.getTable();
             },
+            //每页显示的东西
             changePageSize(val) {
                 this.pageParam.pageSize = val;
                 this.getTable();
             },
+            //树
             async tree() {
                 this.treeList = await ProductServiceApi.standard_product_categor.tree()
-
-
+                   return this.treeList
             },
-            async getTable() {
-                const res = await ProductServiceApi.standard_product.list_page({...this.pageParam, ...this.list})
-                console.log(res)
+            //获取表格
+            async getTable(config) {
+                const res = await ProductServiceApi.standard_product.list_page({...this.pageParam, ...this.list,...config})
                 this.tableList = res.list
                 this.pageParam.total = res.total
+                return res
             },
+            //添加
             add() {
 
             },
-          async  introduce(){
-              const res = await ProductServiceApi.standard_product.excel_import
-                console.log(res)
-
+            //编辑
+            compile(scope){
+                console.log(scope.row.id);
+                console.log(scope.row);
+                this.$router.push(     {path: '/product/supplyProduct/compile', query: {
+                        id:scope.row.id
+                    }},
+                );
             },
+            //导入
+            beforeUpload(file){
+                // 验证格式 xls xlsx,要小于5MB
+                const extension = file.name.split('.')[1] === 'xls'
+                const extension2 = file.name.split('.')[1] === 'xlsx'
+                const isLt5M = file.size / 1024 / 1024 < 5
+                if (!extension&& !extension2) {
+                    this.$message.warning('上传模板只能是 xls、xlsx格式!')
+                    return
+                }
+                if (!isLt5M) {
+                    this.$message.warning('上传模板大小不能超过 5MB!')
+                    return
+                }
+                setTimeout(() => {
+                    const formData = new FormData();
+                    formData.append('file',file,'fileName');
+                    ProductServiceApi.standard_product.excel_import(formData)
+                        .then(res => {
+                            this.$message.success('文件上传成功')
+                            console.log(res)
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        });
+
+                },1500);
+                return false; // 返回false不会自动上传
+            },
+
         //    导出
             derive(){
-
-                ProductServiceApi.standard_product.educe(this.list)
                     ProductServiceApi.standard_product.educe(this.list)
                     //    其实我不太懂这个data为什么会存在呢
                     .then(data => {
@@ -223,30 +278,36 @@
         color: black;
         display: flex;
         padding: 0 20px;
-
         .tabulation {
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
     }
-
     /deep/ .el-table__fixed-right {
-
         text-align: center;
         height: 98%;
-
     }
-
     /deep/ .el-table__fixed-right:before {
         content: none;
-
     }
-
+    /deep/.upload-demo:hover{
+        background-color: #ecf5ff;
+    }
+    /deep/.upload-demo{
+        /deep/.el-button{
+            color:black;
+        }
+        /deep/.el-button:hover{
+                color: #66b1ff;
+        }
+    }
     /deep/ .el-pagination {
         padding: 15px 5px;
         text-align: right;
         overflow: hidden;
     }
-
+  /deep/.el-table th{
+      background: #ffc5c5;
+  }
 </style>

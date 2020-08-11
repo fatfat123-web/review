@@ -1,19 +1,19 @@
 <template>
   <!--这里是侧边栏-->
   <el-menu :default-active="$route.path" router :collapse-transition="false">
-    <template v-for="(listItem, index) in list">
+    <template v-for="(listItem, index) in list" >
       <template v-if="listItem.children" >
         <el-submenu :index="listItem.path" :key="$route.path + index">
           <template slot="title">
             <i class="el-icon-setting"></i>
             <span>{{ listItem.meta.title }}</span>
           </template>
-          <el-menu-item :index="item.path" v-for="item in listItem.children" :key="item.path"  >
+          <el-menu-item :index="item.path" v-for="item in listItem.children" :key="item.path" v-if="!item.meta.hidden" >
             <span slot="title">{{ item.name }}</span>
           </el-menu-item>
         </el-submenu>
       </template>
-      <el-menu-item :index="listItem.path" v-if="!listItem.children" >
+      <el-menu-item :index="listItem.path" v-if="!listItem.children&&!item.meta.hidden" >
         <i class="el-icon-setting"></i>
         <span slot="title">{{ listItem.meta.title }}</span>
       </el-menu-item>

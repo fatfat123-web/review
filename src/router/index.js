@@ -46,6 +46,22 @@ export const roleRouter = [
                         meta: { title: '供企商品管理',},
                         component: () => import('@/views/product/manage')
                     },
+                    {
+                        path: '/product/supplyProduct/add',
+                        name: '创建餐饮企业 ',
+                        component: () => import('@/views/product/add'),
+                        meta:{
+                            hidden:true,
+                        }
+                    },
+                    {
+                        path: '/product/supplyProduct/compile',
+                        name: '编辑餐饮企业 ',
+                        component: () => import('@/views/product/compile'),
+                        meta:{
+                            hidden:true,
+                        }
+                    },
                 ]
             },
         ]
