@@ -11,11 +11,11 @@
             popper-class="tooltip-pic"
     >
         <div class="tooltip-pic" slot="content">
-            <img :src="`${uploadUrl}${picUrl}?access_token=${this.$store.state.token}`" min-width="268" height="268" alt="上传图片">
+            <img :src="`${uploadUrl}${picUrl}?access_token=${store.getters.token}`" min-width="268" height="268" alt="上传图片">
         </div>
 
         <img
-                :src="`${uploadUrl}${picUrl}?access_token=${this.$store.state.token}`"
+                :src="`${uploadUrl}${picUrl}?access_token=${store.getters.token}`"
                 width="48" height="48"
                 alt="上传图片"
         />
@@ -45,7 +45,7 @@
         },
         mounted(){
             let img =new Image();
-            img.src=`${this.uploadUrl}${this.picUrl}?access_token=${this.$store.state.token}`;
+            img.src=`${this.uploadUrl}${this.picUrl}?access_token=${store.getters.token}`;
             img.onerror=()=>{
                 this.error=true;
             }
